@@ -1,4 +1,5 @@
 {
     "token": "",
-    "mongo": ""
+    "mongo": "",
+    "antiCrashwebhookURL": ""
 }

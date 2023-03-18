@@ -18,4 +18,6 @@ client.buttons = new Collection();
 loadEvents(client);
 loadButtons(client);
 
+require("./Handlers/antiCrash.js")(client);
+
 client.login(client.config.token);
