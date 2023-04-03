@@ -16,7 +16,7 @@ module.exports = {
           ephermal: true,
         });
 
-      if (command.developer && interaction.user.id !== "TU ID")
+      if (command.developer && interaction.user.id !== client.config.developer)
         return interaction.reply({
           content: "This copmmand is only available to the developer.",
           ephermal: true,
@@ -32,6 +32,17 @@ module.exports = {
 
       try {
         await button.execute(interaction, client);
+      } catch (err) {
+        console.error(err);
+      }
+    } else if(interaction.isStringSelectMenu()) {
+      const { menus } = client;
+      const { customId } = interaction;
+      const menu = menus.get(customId);
+      if (!menu) return new Error('Este menu no tiene codigo');
+
+      try {
+        await menu.execute(interaction, client);
       } catch (err) {
         console.error(err);
       }
