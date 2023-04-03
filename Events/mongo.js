@@ -1,5 +1,5 @@
 const colors = require("colors");
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const mongoose = require("mongoose");
 const { mongo } = require("../config/config.json");
 
 module.exports = {
@@ -8,15 +8,11 @@ module.exports = {
   once: true,
   execute(client) {
 
-    if (!mongo) return;
+    if(!mongo) return;
+    
+    mongoose.set('strictQuery', false);
 
-    console.log(colors.rainbow("Conectando a la base de datos"));
-    const Client = new MongoClient(mongo, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-    Client.connect(err => {
-      const collection = Client.db("test").collection("devices");
-      // perform actions on the collection object
-      Client.close();
-    });
+    mongoose.connect(mongo).then(() => console.log(colors.rainbow('Data base conectada')))
   },
 };
 
