@@ -12,13 +12,13 @@ module.exports = {
       const command = client.commands.get(interaction.commandName);
       if (!command)
         return interaction.reply({
-          content: "This command is outdated.",
+          content: "Este comando está desactualizado.",
           ephermal: true,
         });
 
       if (command.developer && interaction.user.id !== client.config.developer)
         return interaction.reply({
-          content: "This copmmand is only available to the developer.",
+          content: "Este comando solo está disponible para el desarrollador.",
           ephermal: true,
         });
 
